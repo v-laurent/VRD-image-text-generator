@@ -14,10 +14,10 @@ all_characters = string.ascii_letters + string.digits + string.punctuation + " "
 @click.option('--text', help='Text to be generated in the image')
 @click.option('--font_size', default=48, help='Font size for the text')
 @click.option('--font_path', default="", help='Path to the font file (empty for random font)')
-@click.option('--bars', default=["vertical_bars", "horizontal_bars"], help='List of bars to be added to the image')
-@click.option('--add_random_text', is_flag=True, help='Add random text to the image')
-@click.option('--add_boxes', is_flag=True, help='Add boxes to the image')
-@click.option('--apply_data_augmentation', is_flag=True, default=True, help='Apply data augmentation to the image')
+@click.option('--bars', default=True, type=click.BOOL, help='List of bars to be added to the image')
+@click.option('--add_random_text', default=True, type=click.BOOL, help='Add random text to the image')
+@click.option('--add_boxes', default=True, type=click.BOOL, help='Add boxes to the image')
+@click.option('--apply_data_augmentation', default=True, type=click.BOOL, help='Apply data augmentation to the image')
 @click.option('--output_path', default="generated_image.png", help='Output path of the generated image')
 def generate_text_image(text, font_size, font_path, bars, add_random_text, add_boxes, apply_data_augmentation, output_path):
     image = Image.new("RGB", (1, 1), "white")  
@@ -41,12 +41,11 @@ def generate_text_image(text, font_size, font_path, bars, add_random_text, add_b
     image = ImageOps.expand(image, padding, fill="white")
     draw = ImageDraw.Draw(image)
     
-    if "vertical_bars" in bars:
+    if bars:
         for _ in range(random.randint(3, 6)):
             bar_x = random.randint(0, image.size[0] - 1)
             draw.line([(bar_x, 0), (bar_x, image.size[1])], fill=tuple([np.random.randint(0, 100)] * 3), width=random.randint(1, 3))
      
-    if "horizontal_bars" in bars:
         for _ in range(random.randint(1, 3)):
             bar_y = random.randint(0, image.size[1] - 1)
             draw.line([(0, bar_y), (image.size[0], bar_y)], fill=tuple([np.random.randint(0, 100)] * 3), width=random.randint(1, 3))
