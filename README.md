@@ -75,8 +75,21 @@ The main parameters are `text` and `output_path` which respectively request the 
 
 Please feel free to contribute to this project and help enhance the OCR community's toolkit.
 
-## License
+## Citation
 
+```
+@misc{lauar2024spanishtrocrleveragingtransfer,
+      title={Spanish TrOCR: Leveraging Transfer Learning for Language Adaptation}, 
+      author={Filipe Lauar and Valentin Laurent},
+      year={2024},
+      eprint={2407.06950},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2407.06950}, 
+}
+```
+
+## License
 
 The license for this project is MIT.
 
